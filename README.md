@@ -10,7 +10,7 @@
 	1. [X] Pathfinding até ponto de interesse (!! Parte mais importante)
 	2. [X] Precisamos que o cachorro OU encoste no objeto OU esteja a uma distância que queremos
 3. Cachorro interage com objeto
-	1. [ ] A partir do ponto 2 do último tópico, precisamos setar uma propriedade no cubo
+	1. [X] A partir do ponto 2 do último tópico, precisamos setar uma propriedade no cubo
 	   (false->true ou vice-versa) e setar um timer (temporário) para que essa propriedade volte ao estado
 	   original
-	2. [ ] Voltamos ao primeiro ponto da Sprint, e temos um loop infinito
+	2. [X] Voltamos ao primeiro ponto da Sprint, e temos um loop infinito

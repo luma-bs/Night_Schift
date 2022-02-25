@@ -14,28 +14,31 @@ public class MuseumPieceBehaviour : MonoBehaviour
     private Material touchedMaterial;
     private Material thisMaterial;
 
-    private DogNavMesh dogObject;
+    private GameObject dogObject;
+    private DogNavMesh dogScript;
 
     public bool touched = false;
+    public bool isTouching = false;
     private bool timerStarted = false;
+    public float timeRemaining = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         _transform = transform;
         _gameObject = _transform.gameObject;
-        Debug.Log(_gameObject);
 
         thisRenderer = GetComponent<MeshRenderer>();
 
         untouchedMaterial = Resources.Load<Material>("Materials/Object-False");
         touchedMaterial = Resources.Load<Material>("Materials/Object-True");
         
-        dogObject = ( GameObject.Find("Dog") ).GetComponent<DogNavMesh>();
+        dogObject = GameObject.Find("Dog");
+        dogScript = dogObject.GetComponent<DogNavMesh>();
         
         /* Isto foi usado para Debug, como forma de saber se consegui com sucesso as variáveis
         contidas no GameObject 'Dog'
-        foreach (GameObject go in dogObject.pointsOfInterest){
+        foreach (GameObject go in dogScript.pointsOfInterest){
             Debug.Log(go);
         }
         */
@@ -48,13 +51,35 @@ public class MuseumPieceBehaviour : MonoBehaviour
     void Update()
     {
         // Se objeto foi tocado
-        if ( (touched == true) && (timerStarted == false)) {
-            // (?) Remover objeto da lista de objetos do cachorro
-            dogObject.pointsOfInterest.Remove(_gameObject);
+        if ( touched && !timerStarted) {
+
+            // Manda uma mensagem para mudar o ponto de interesse do cachorro
+            dogScript.SendMessage("UpdateTarget");
+
             // Ligar timer
+            timeRemaining = 2;
+
+            timerStarted = true;
 
             // Mudar material
             thisRenderer.material = touchedMaterial;
         }
+        else if ( (!touched || isTouching ) && timerStarted )
+        {
+            timeRemaining -= Time.deltaTime;
+
+            if (timeRemaining <= 0)
+            {
+                timeRemaining = 0;
+                timerStarted = false;
+
+                Debug.Log("Done");
+                
+                thisRenderer.material = untouchedMaterial;
+
+                dogScript.pointsOfInterest.Add(_gameObject);
+            }
+        }
     }
+        
 }

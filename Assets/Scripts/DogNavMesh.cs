@@ -9,16 +9,47 @@ public class DogNavMesh : MonoBehaviour
     public List<GameObject> pointsOfInterest; // Array of GameObjects to be the destinations for navMeshAgent
 
     private NavMeshAgent navMeshAgent;
-    private int nextTarget;
+    private GameObject nextTarget;
+    private GameObject targetBuffer;
 
-    private MuseumPieceBehaviour pieceCollided;
+    private MuseumPieceBehaviour targetBufferScript;
+
+    public void UpdateTarget()
+    {
+        int randomSelected = Random.Range(0,pointsOfInterest.Count-1);
+        nextTarget = pointsOfInterest[randomSelected];
+        //Debug.Log(randomSelected+1);
+    }
 
     private void OnTriggerEnter(Collider piece)
     {
-        if(piece.gameObject.tag == "MuseumPiece")
+        if( GameObject.ReferenceEquals(piece.gameObject, nextTarget) )
         {
-            pieceCollided = piece.gameObject.GetComponent<MuseumPieceBehaviour>();
-            pieceCollided.touched = true;
+            targetBuffer = piece.gameObject;
+            targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
+            targetBufferScript.touched = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider piece)
+    {
+        if( GameObject.ReferenceEquals(piece.gameObject, targetBuffer) )
+        {
+            targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
+            targetBufferScript.isTouching = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider piece)
+    {
+        if( GameObject.ReferenceEquals(piece.gameObject, targetBuffer) )
+        {
+            targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
+            targetBufferScript.touched = false;
+            targetBufferScript.isTouching = false;
+
+            // Remover objeto da lista de objetos do cachorro
+            pointsOfInterest.Remove(targetBuffer);
         }
     }
 
@@ -30,14 +61,12 @@ public class DogNavMesh : MonoBehaviour
         pointsOfInterest = new List<GameObject>();
         pointsOfInterest.AddRange(GameObject.FindGameObjectsWithTag("MuseumPiece"));
 
-        nextTarget = Random.Range(0, pointsOfInterest.Count-1);
+        UpdateTarget();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            navMeshAgent.destination = pointsOfInterest[nextTarget].transform.position;
-        }
+        navMeshAgent.destination = nextTarget.transform.position;
     }
 }

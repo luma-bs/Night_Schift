@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class DogNavMesh : MonoBehaviour
 {
 
-    private GameObject[] poi; // Array of GameObjects to be the destinations for navMeshAgent
+    public List<GameObject> pointsOfInterest; // Array of GameObjects to be the destinations for navMeshAgent
+
+
     private NavMeshAgent navMeshAgent;
     private int nextTarget;
 
@@ -14,16 +16,18 @@ public class DogNavMesh : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        poi = GameObject.FindGameObjectsWithTag("MuseumPiece");
 
-        nextTarget = Random.Range(0, poi.Length-1);
+        pointsOfInterest = new List<GameObject>();
+        pointsOfInterest.AddRange(GameObject.FindGameObjectsWithTag("MuseumPiece"));
+
+        nextTarget = Random.Range(0, pointsOfInterest.Count-1);
     }
 
     // Update is called once per frame
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)) {
-            navMeshAgent.destination = poi[nextTarget].transform.position;
+            navMeshAgent.destination = pointsOfInterest[nextTarget].transform.position;
         }
     }
 }

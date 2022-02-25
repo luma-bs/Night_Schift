@@ -8,9 +8,19 @@ public class DogNavMesh : MonoBehaviour
 
     public List<GameObject> pointsOfInterest; // Array of GameObjects to be the destinations for navMeshAgent
 
-
     private NavMeshAgent navMeshAgent;
     private int nextTarget;
+
+    private MuseumPieceBehaviour pieceCollided;
+
+    private void OnTriggerEnter(Collider piece)
+    {
+        if(piece.gameObject.tag == "MuseumPiece")
+        {
+            pieceCollided = piece.gameObject.GetComponent<MuseumPieceBehaviour>();
+            pieceCollided.touched = true;
+        }
+    }
 
     // Start is called before the first frame update
     private void Awake()

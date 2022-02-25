@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 225348555}
   - component: {fileID: 225348554}
   - component: {fileID: 225348558}
+  - component: {fileID: 225348559}
   m_Layer: 0
   m_Name: Piece 2
   m_TagString: MuseumPiece
@@ -345,10 +346,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225348553}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &225348555
 MeshRenderer:
@@ -427,9 +428,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untouchedMaterial: {fileID: 0}
-  touchedMaterial: {fileID: 0}
   touched: 0
+--- !u!54 &225348559
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225348553}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &383859934
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,8 +809,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.28502455, y: -0.34308195, z: 0.11009262, w: 0.8882204}
-  m_LocalPosition: {x: 7.98, y: 7.6, z: -10}
+  m_LocalRotation: {x: -0.39010412, y: 0.5516809, z: -0.32532692, w: -0.66153556}
+  m_LocalPosition: {x: 17.166018, y: 29.388664, z: -1.5987142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -915,7 +930,7 @@ GameObject:
   - component: {fileID: 1300218424}
   m_Layer: 0
   m_Name: Dog
-  m_TagString: Untagged
+  m_TagString: Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -928,10 +943,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300218418}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1300218420
 MeshRenderer:
@@ -1046,6 +1061,7 @@ GameObject:
   - component: {fileID: 1494967659}
   - component: {fileID: 1494967658}
   - component: {fileID: 1494967662}
+  - component: {fileID: 1494967663}
   m_Layer: 0
   m_Name: Piece 4
   m_TagString: MuseumPiece
@@ -1061,10 +1077,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494967657}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1494967659
 MeshRenderer:
@@ -1143,9 +1159,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untouchedMaterial: {fileID: 0}
-  touchedMaterial: {fileID: 0}
   touched: 0
+--- !u!54 &1494967663
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494967657}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1552302249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1307,7 @@ GameObject:
   - component: {fileID: 1588872765}
   - component: {fileID: 1588872764}
   - component: {fileID: 1588872768}
+  - component: {fileID: 1588872769}
   m_Layer: 0
   m_Name: Piece 1
   m_TagString: MuseumPiece
@@ -1292,10 +1323,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588872763}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1588872765
 MeshRenderer:
@@ -1374,9 +1405,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untouchedMaterial: {fileID: 0}
-  touchedMaterial: {fileID: 0}
   touched: 0
+--- !u!54 &1588872769
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588872763}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1782989354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1435,7 @@ GameObject:
   - component: {fileID: 1782989356}
   - component: {fileID: 1782989355}
   - component: {fileID: 1782989359}
+  - component: {fileID: 1782989360}
   m_Layer: 0
   m_Name: Piece 3
   m_TagString: MuseumPiece
@@ -1405,10 +1451,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782989354}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1782989356
 MeshRenderer:
@@ -1487,9 +1533,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untouchedMaterial: {fileID: 0}
-  touchedMaterial: {fileID: 0}
   touched: 0
+--- !u!54 &1782989360
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782989354}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1784229413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1684,7 @@ GameObject:
   - component: {fileID: 1930599346}
   - component: {fileID: 1930599345}
   - component: {fileID: 1930599349}
+  - component: {fileID: 1930599350}
   m_Layer: 0
   m_Name: Piece 6
   m_TagString: MuseumPiece
@@ -1639,10 +1700,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930599344}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1930599346
 MeshRenderer:
@@ -1721,9 +1782,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untouchedMaterial: {fileID: 0}
-  touchedMaterial: {fileID: 0}
   touched: 0
+--- !u!54 &1930599350
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930599344}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2074416538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1812,7 @@ GameObject:
   - component: {fileID: 2074416540}
   - component: {fileID: 2074416539}
   - component: {fileID: 2074416543}
+  - component: {fileID: 2074416544}
   m_Layer: 0
   m_Name: Piece 5
   m_TagString: MuseumPiece
@@ -1752,10 +1828,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074416538}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2074416540
 MeshRenderer:
@@ -1834,6 +1910,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untouchedMaterial: {fileID: 0}
-  touchedMaterial: {fileID: 0}
   touched: 0
+--- !u!54 &2074416544
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074416538}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

@@ -7,6 +7,8 @@ public class MuseumPieceBehaviour : MonoBehaviour
 
     private MeshRenderer thisRenderer;
 
+    //private int thisIndex;
+
     private Transform _transform;
     private GameObject _gameObject; // Serve para referenciar a instância do objeto que contém este script
 
@@ -18,7 +20,6 @@ public class MuseumPieceBehaviour : MonoBehaviour
     private DogNavMesh dogScript;
 
     public bool touched = false;
-    public bool isTouching = false;
     private bool timerStarted = false;
     public float timeRemaining = 0;
 
@@ -35,13 +36,9 @@ public class MuseumPieceBehaviour : MonoBehaviour
         
         dogObject = GameObject.Find("Dog");
         dogScript = dogObject.GetComponent<DogNavMesh>();
-        
-        /* Isto foi usado para Debug, como forma de saber se consegui com sucesso as variáveis
-        contidas no GameObject 'Dog'
-        foreach (GameObject go in dogScript.pointsOfInterest){
-            Debug.Log(go);
-        }
-        */
+
+        //thisIndex = dogScript.pointsOfInterest.FindIndex(obj => obj.Equals(_gameObject));
+        //Debug.Log(thisIndex);
 
         // Só pra ter certeza de que o material está correto ao inicializar o jogo
         thisRenderer.material = untouchedMaterial;
@@ -64,7 +61,7 @@ public class MuseumPieceBehaviour : MonoBehaviour
             // Mudar material
             thisRenderer.material = touchedMaterial;
         }
-        else if ( (!touched || isTouching ) && timerStarted )
+        else if ( !touched && timerStarted )
         {
             timeRemaining -= Time.deltaTime;
 
@@ -72,11 +69,10 @@ public class MuseumPieceBehaviour : MonoBehaviour
             {
                 timeRemaining = 0;
                 timerStarted = false;
-
-                Debug.Log("Done");
                 
                 thisRenderer.material = untouchedMaterial;
 
+                //dogScript.pointsOfInterest.Insert(thisIndex, _gameObject);
                 dogScript.pointsOfInterest.Add(_gameObject);
             }
         }

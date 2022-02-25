@@ -18,7 +18,7 @@ public class DogNavMesh : MonoBehaviour
     {
         int randomSelected = Random.Range(0,pointsOfInterest.Count-1);
         nextTarget = pointsOfInterest[randomSelected];
-        //Debug.Log(randomSelected+1);
+        // Work on this later: Debug.Log("Chose " + );
     }
 
     private void OnTriggerEnter(Collider piece)
@@ -36,7 +36,7 @@ public class DogNavMesh : MonoBehaviour
         if( GameObject.ReferenceEquals(piece.gameObject, targetBuffer) )
         {
             targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
-            targetBufferScript.isTouching = true;
+            pointsOfInterest.Remove(targetBuffer);
         }
     }
 
@@ -46,10 +46,6 @@ public class DogNavMesh : MonoBehaviour
         {
             targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
             targetBufferScript.touched = false;
-            targetBufferScript.isTouching = false;
-
-            // Remover objeto da lista de objetos do cachorro
-            pointsOfInterest.Remove(targetBuffer);
         }
     }
 

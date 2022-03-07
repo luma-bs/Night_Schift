@@ -1,5 +1,24 @@
 # Night Shift
 
+## SPRINT 2 (11/03)
+
+### O que será necessário:
+	- Novo GameObject: Guarda noturno
+
+### Observações:
+	- O cachorro precisa se movimentar mais devagar para que seja possível arrumar todas as coisas antes do término da noite
+	- Seria bom começar a modelar os personagens e os objetos do museu e fazer as animações respectivas
+
+1. Movimentação do guarda
+	1. [ ] Objetos: Guarda
+	2. [ ] Script: Movimentação através do teclado
+2. Interação com objetos
+	1. [ ] Mesma interação que a do cachorro, mas invertida
+3. Cronômetro de tempo para a duração da noite
+	1. [ ] Criar uma caixa de texto para exibir o cronômetro
+	2. [ ] Criar o script do cronômetro, precisa estar em segundos
+
+
 ## SPRINT 1 (25/02)
 
 1. Cachorro seleciona objeto para interagir

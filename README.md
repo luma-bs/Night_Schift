@@ -10,7 +10,7 @@
 	- Seria bom começar a modelar os personagens e os objetos do museu e fazer as animações respectivas
 
 1. Movimentação do guarda
-	1. [ ] Objetos: Guarda
+	1. [X] Objetos: Guarda
 	2. [ ] Script: Movimentação através do teclado
 2. Interação com objetos
 	1. [ ] Mesma interação que a do cachorro, mas invertida

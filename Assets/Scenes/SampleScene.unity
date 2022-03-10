@@ -372,7 +372,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218151876}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -7.33, y: 1, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -381,7 +381,7 @@ Transform:
   - {fileID: 2108686376}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &218151878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,10 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d19567ccf11fae4d842ef1410ad2196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  cam: {fileID: 0}
-  speed: 0.1
-  turnSmoothTime: 0.1
+  speed: 3
+  rotationSpeed: 720
 --- !u!1 &219392482
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touched: 0
   timeRemaining: 0
 --- !u!54 &225348559
 Rigidbody:
@@ -881,6 +878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 90
   timerText: {fileID: 785052895}
+  timesUp: 0
 --- !u!114 &785052895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,7 +1707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touched: 0
   timeRemaining: 0
 --- !u!54 &1494967663
 Rigidbody:
@@ -1988,7 +1985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touched: 0
   timeRemaining: 0
 --- !u!54 &1588872769
 Rigidbody:
@@ -2180,7 +2176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touched: 0
   timeRemaining: 0
 --- !u!54 &1782989360
 Rigidbody:
@@ -2431,7 +2426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touched: 0
   timeRemaining: 0
 --- !u!54 &1930599350
 Rigidbody:
@@ -2561,7 +2555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8f520e9718acb40aae19290a35e6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touched: 0
   timeRemaining: 0
 --- !u!54 &2074416544
 Rigidbody:

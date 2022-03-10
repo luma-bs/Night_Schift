@@ -38,8 +38,8 @@ public class MuseumPieceBehaviour : MonoBehaviour
 
         thisRenderer = GetComponent<MeshRenderer>();
 
-        untouchedMaterial = Resources.Load<Material>("Materials/Object-False");
-        touchedMaterial = Resources.Load<Material>("Materials/Object-True");
+        untouchedMaterial = Resources.Load<Material>("Materials/Object-True");
+        touchedMaterial = Resources.Load<Material>("Materials/Object-False");
         
         dogObject = GameObject.Find("Dog");
         dogScript = dogObject.GetComponent<DogNavMesh>();

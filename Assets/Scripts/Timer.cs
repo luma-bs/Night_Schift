@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-     public float timeRemaining = 120;
-     public Text timerText;
+    public float timeRemaining = 120;
+    public Text timerText;
+
+    public bool timesUp;
 
     void Update()
     {
@@ -25,6 +27,8 @@ public class Timer : MonoBehaviour
     void DisplayTime (float time){
     	if (time < 0){
     		time = 0;
+
+            timesUp = true;
     	}
 
     	float minutes = Mathf.FloorToInt(time / 60);

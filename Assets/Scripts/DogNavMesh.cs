@@ -11,6 +11,8 @@ public class DogNavMesh : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private GameObject nextTarget;
 
+    private Timer timerScript;
+
     //private GameObject targetBuffer;
     //private MuseumPieceBehaviour targetBufferScript;
     private GameObject targetChild;
@@ -28,12 +30,16 @@ public class DogNavMesh : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private void Awake()
+    private void Start()
     {
+        timerScript = GameObject.Find("Timer").GetComponent<Timer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         pointsOfInterest = new List<GameObject>();
         pointsOfInterest.AddRange( GameObject.FindGameObjectsWithTag("MuseumPiece") );
+
+        navMeshAgent.speed = 7.5f;
+        navMeshAgent.acceleration = 5f;
 
         UpdateTarget();
     }
@@ -41,7 +47,7 @@ public class DogNavMesh : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        navMeshAgent.destination = targetChild.transform.position;
+        if ( !timerScript.timesUp ) navMeshAgent.destination = targetChild.transform.position;
 
         if ( transform.position.x == navMeshAgent.destination.x &&
              transform.position.z == navMeshAgent.destination.z    )

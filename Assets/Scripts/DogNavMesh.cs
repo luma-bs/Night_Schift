@@ -10,43 +10,21 @@ public class DogNavMesh : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private GameObject nextTarget;
-    private GameObject targetBuffer;
 
-    private MuseumPieceBehaviour targetBufferScript;
+    //private GameObject targetBuffer;
+    //private MuseumPieceBehaviour targetBufferScript;
+    private GameObject targetChild;
 
     public void UpdateTarget()
     {
         int randomSelected = Random.Range(0,pointsOfInterest.Count-1);
         nextTarget = pointsOfInterest[randomSelected];
-        // Work on this later: Debug.Log("Chose " + );
-    }
 
-    private void OnTriggerEnter(Collider piece)
-    {
-        if( GameObject.ReferenceEquals(piece.gameObject, nextTarget) )
-        {
-            targetBuffer = piece.gameObject;
-            targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
-            targetBufferScript.touched = true;
-        }
-    }
+        //targetBuffer = nextTarget;
+        //targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
 
-    private void OnTriggerStay(Collider piece)
-    {
-        if( GameObject.ReferenceEquals(piece.gameObject, targetBuffer) )
-        {
-            targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
-            pointsOfInterest.Remove(targetBuffer);
-        }
-    }
-
-    private void OnTriggerExit(Collider piece)
-    {
-        if( GameObject.ReferenceEquals(piece.gameObject, targetBuffer) )
-        {
-            targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
-            targetBufferScript.touched = false;
-        }
+        // O cachorro se dirige a uma posição fixa perto da peça do museu
+        targetChild = nextTarget.transform.GetChild(0).gameObject;
     }
 
     // Start is called before the first frame update
@@ -55,7 +33,7 @@ public class DogNavMesh : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         pointsOfInterest = new List<GameObject>();
-        pointsOfInterest.AddRange(GameObject.FindGameObjectsWithTag("MuseumPiece"));
+        pointsOfInterest.AddRange( GameObject.FindGameObjectsWithTag("MuseumPiece") );
 
         UpdateTarget();
     }
@@ -63,6 +41,15 @@ public class DogNavMesh : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        navMeshAgent.destination = nextTarget.transform.position;
+        navMeshAgent.destination = targetChild.transform.position;
+
+        if ( transform.position.x == navMeshAgent.destination.x &&
+             transform.position.z == navMeshAgent.destination.z    )
+        {
+            nextTarget.SendMessage("StartTimer");
+            pointsOfInterest.Remove(nextTarget);
+
+            UpdateTarget();
+        }
     }
 }

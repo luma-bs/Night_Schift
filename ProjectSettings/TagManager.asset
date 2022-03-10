@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MuseumPiece
   - Collider
+  - AI_Target
   layers:
   - Default
   - TransparentFX

@@ -19,9 +19,16 @@ public class MuseumPieceBehaviour : MonoBehaviour
     private GameObject dogObject;
     private DogNavMesh dogScript;
 
-    public bool touched = false;
     private bool timerStarted = false;
     public float timeRemaining = 0;
+
+    void StartTimer()
+    {
+        timeRemaining = 2;
+        thisRenderer.material = touchedMaterial;
+
+        timerStarted = true;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -47,21 +54,7 @@ public class MuseumPieceBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Se objeto foi tocado
-        if ( touched && !timerStarted) {
-
-            // Manda uma mensagem para mudar o ponto de interesse do cachorro
-            dogScript.SendMessage("UpdateTarget");
-
-            // Ligar timer
-            timeRemaining = 2;
-
-            timerStarted = true;
-
-            // Mudar material
-            thisRenderer.material = touchedMaterial;
-        }
-        else if ( !touched && timerStarted )
+        if ( timerStarted )
         {
             timeRemaining -= Time.deltaTime;
 

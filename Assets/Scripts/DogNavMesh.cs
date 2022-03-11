@@ -25,7 +25,7 @@ public class DogNavMesh : MonoBehaviour
         //targetBuffer = nextTarget;
         //targetBufferScript = targetBuffer.GetComponent<MuseumPieceBehaviour>();
 
-        // O cachorro se dirige a uma posição fixa perto da peça do museu
+        // O cachorro se dirige a uma posiï¿½ï¿½o fixa perto da peï¿½a do museu
         targetChild = nextTarget.transform.GetChild(0).gameObject;
     }
 
@@ -47,15 +47,18 @@ public class DogNavMesh : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if ( !timerScript.timesUp ) navMeshAgent.destination = targetChild.transform.position;
 
-        if ( transform.position.x == navMeshAgent.destination.x &&
-             transform.position.z == navMeshAgent.destination.z    )
-        {
-            nextTarget.SendMessage("StartTimer");
-            pointsOfInterest.Remove(nextTarget);
+        if(pointsOfInterest.Count >= 1){
+            if ( !timerScript.timesUp ) navMeshAgent.destination = targetChild.transform.position;
 
-            UpdateTarget();
+            if ( transform.position.x == navMeshAgent.destination.x &&
+                transform.position.z == navMeshAgent.destination.z    )
+            {
+                nextTarget.SendMessage("MessObject");
+                pointsOfInterest.Remove(nextTarget);
+
+                UpdateTarget();
+            }
         }
     }
 }

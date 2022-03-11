@@ -12,6 +12,8 @@ public class MuseumPieceBehaviour : MonoBehaviour
     private Transform _transform;
     private GameObject _gameObject; // Serve para referenciar a instância do objeto que contém este script
 
+    private bool isTouched;
+
     private Material untouchedMaterial;
     private Material touchedMaterial;
     private Material thisMaterial;
@@ -22,12 +24,20 @@ public class MuseumPieceBehaviour : MonoBehaviour
     private bool timerStarted = false;
     public float timeRemaining = 0;
 
-    void StartTimer()
+    void MessObject()
     {
-        timeRemaining = 2;
         thisRenderer.material = touchedMaterial;
+        isTouched = true;
+    }
 
-        timerStarted = true;
+    void FixObject()
+    {
+        thisRenderer.material = untouchedMaterial;
+        isTouched = false;
+    }
+
+    public bool getIsTouched(){
+        return isTouched;
     }
 
     // Start is called before the first frame update
@@ -49,6 +59,7 @@ public class MuseumPieceBehaviour : MonoBehaviour
 
         // Só pra ter certeza de que o material está correto ao inicializar o jogo
         thisRenderer.material = untouchedMaterial;
+        isTouched = false;
     }
 
     // Update is called once per frame

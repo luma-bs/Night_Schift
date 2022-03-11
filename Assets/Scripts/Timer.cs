@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     public float timeRemaining = 120;
     public Text timerText;
+    public Text timesupText;
 
     public bool timesUp;
 
@@ -29,6 +30,8 @@ public class Timer : MonoBehaviour
     		time = 0;
 
             timesUp = true;
+            timesupText.enabled = true;
+            Time.timeScale = 0f; //efetivamente pausa o jogo
     	}
 
     	float minutes = Mathf.FloorToInt(time / 60);

@@ -11,30 +11,31 @@ public class PlayerFixObjects : MonoBehaviour
     void Start()
     {
         pressButtonText.enabled = false;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<MuseumPieceBehaviour>().getIsTouched())
+        if (other.gameObject.GetComponent<MuseumPieceBehaviour>().getIsTouched())
             pressButtonText.enabled = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(pressButtonText.enabled == true)
+        if (pressButtonText.enabled == true)
             pressButtonText.enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<MuseumPieceBehaviour>().getIsTouched() && Input.GetKey("e")){
+        if (other.gameObject.GetComponent<MuseumPieceBehaviour>().getIsTouched() && Input.GetKey("e"))
+        {
             other.gameObject.SendMessage("FixObject");
             pressButtonText.enabled = false;
         }

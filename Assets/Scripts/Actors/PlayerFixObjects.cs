@@ -11,7 +11,8 @@ public class PlayerFixObjects : MonoBehaviour
     public GameObject inventoryItemInstance;
 
     private string fixableObjectsTag = "MuseumPiece";
-    private string takeableObjectsTag = "TakeableObj";
+    private string takeableObjectsTag = "TakeableObj"; 
+    private string dogDistractionTag = "DogDistractionTag";
     
     private string fixText = "Pressione E para arrumar";
     private string takeText = "Pressione E para pegar";
@@ -38,11 +39,9 @@ public class PlayerFixObjects : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == fixableObjectsTag || other.gameObject.tag == takeableObjectsTag){
-            if (Input.GetKey("e")){
-                other.gameObject.SendMessage("GuardInteract", this.gameObject);
-            }
-        } 
+        if (Input.GetKey("e")){
+            other.gameObject.SendMessage("GuardInteract", this.gameObject);
+        }
     }
 
     public void ShowFixText(){
@@ -56,6 +55,10 @@ public class PlayerFixObjects : MonoBehaviour
 
     public void ShowMissingText(){
         ShowText(missingText);
+    }
+
+    public void ShowCustomText(string txt){
+        ShowText(txt);
     }
 
     private void ShowText(string newText){

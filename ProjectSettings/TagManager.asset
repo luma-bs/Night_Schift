@@ -8,6 +8,7 @@ TagManager:
   - Collider
   - AI_Target
   - TakeableObj
+  - DogDistraction
   layers:
   - Default
   - TransparentFX

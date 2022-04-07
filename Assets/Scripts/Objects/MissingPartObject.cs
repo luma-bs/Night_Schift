@@ -15,18 +15,20 @@ public class MissingPartObject : MonoBehaviour, IInteractableObject
     }
 
     IEnumerator DogInteraction(GameObject dogObj){
+        if(!isMessedUp){
+            isMessedUp = true;
 
-        Animator anim = gameObject.GetComponent<Animator>();
+            Animator anim = gameObject.GetComponent<Animator>();
 
-        DogController dogControl = dogObj.GetComponent<DogController>();
+            DogController dogControl = dogObj.GetComponent<DogController>();
 
-        gameObject.GetComponent<Animator>().SetBool("isMessedUp", true);
+            gameObject.GetComponent<Animator>().SetBool("isMessedUp", true);
 
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
-        isMessedUp = true;
-        dogControl.AddToInventory(missingPiecePrefab);
-        dogControl.GoToTarget(missingPiecePositionObj);
+            dogControl.AddToInventory(missingPiecePrefab);
+            dogControl.GoToTarget(missingPiecePositionObj);
+        }
     }
 
     public void GuardApproach(GameObject guardObj){

@@ -33,10 +33,6 @@ public class SimplesMessObject : MonoBehaviour, IInteractableObject
         }
     }
     public void GuardInteract(GameObject guardObj){
-        /*
-        Se o guarda não tem o pedaço faltando, bota "Algo está faltando..." na tela
-        Se o guarda tem, animação e volta pro estado normal
-        */
         if(isMessedUp){
             isMessedUp = false;
             gameObject.GetComponent<Animator>().SetBool("isMessedUp", false);

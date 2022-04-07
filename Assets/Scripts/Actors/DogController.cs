@@ -12,11 +12,13 @@ public class DogController : MonoBehaviour
     public List<GameObject> pointsOfInterest; // Array of GameObjects to be the destinations for navMeshAgent
 
     private NavMeshAgent navMeshAgent;
-    private GameObject nextTarget;
+    private GameObject nextTargetSet;
 
     private Timer timerScript;
 
     private Vector3 originalPosition;
+
+    private GameObject nextTarget;
 
     //private GameObject targetBuffer;
     //private MuseumPieceBehaviour targetBufferScript;
@@ -43,18 +45,30 @@ public class DogController : MonoBehaviour
 
     private GameObject NewRandomTarget()
     {
-        if(pointsOfInterest.Count >= 1){
-            return pointsOfInterest[Random.Range(0,pointsOfInterest.Count-1)];
-        } else {
-            GameObject originalPositionObj = new GameObject("DogOriginalPosition");
-            originalPositionObj.transform.position = originalPosition;
-            return originalPositionObj;
+        if(nextTargetSet != null){
+            GameObject temp = nextTargetSet;
+            nextTargetSet = null;
+            return temp;
         }
+        else{
+            if(pointsOfInterest.Count >= 1){
+                return pointsOfInterest[Random.Range(0,pointsOfInterest.Count-1)];
+            } else {
+                GameObject originalPositionObj = new GameObject("DogOriginalPosition");
+                originalPositionObj.transform.position = originalPosition;
+                return originalPositionObj;
+            }
+        }
+    }
+
+    public void SetNextTarget(GameObject newNextTarget){
+        nextTargetSet = newNextTarget;
     }
 
     private void OnTriggerEnter(Collider otherCollider)
     {
         if(otherCollider.gameObject == nextTarget){
+            Debug.Log("ENTROU, PARE");
             StopMovement();
             pointsOfInterest.Remove(nextTarget);
             nextTarget.SendMessage("DogInteract", this.gameObject);
@@ -62,17 +76,18 @@ public class DogController : MonoBehaviour
     }
 
     public void StopMovement(){
-        navMeshAgent.SetDestination(gameObject.transform.position);
+        navMeshAgent.enabled = false;
     }
 
     public void GoToRandomTarget(){
+        navMeshAgent.enabled = true;
         nextTarget = NewRandomTarget();
         navMeshAgent.SetDestination(nextTarget.transform.position);
     }
 
     public void GoToTarget(GameObject newDestination){
-        nextTarget = newDestination;
-        navMeshAgent.SetDestination(nextTarget.transform.position);
+        SetNextTarget(newDestination);
+        GoToRandomTarget(); //gambiarra, mas funciona
     }
 
     public void AddToInventory(GameObject newItem){

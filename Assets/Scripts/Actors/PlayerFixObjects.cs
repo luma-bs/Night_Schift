@@ -10,6 +10,8 @@ public class PlayerFixObjects : MonoBehaviour
     public GameObject inventory;
     public GameObject inventoryItemInstance;
 
+    private Animator animator;
+
     private string fixableObjectsTag = "MuseumPiece";
     private string takeableObjectsTag = "TakeableObj"; 
     private string dogDistractionTag = "DogDistractionTag";
@@ -41,6 +43,7 @@ public class PlayerFixObjects : MonoBehaviour
     {
         if (Input.GetKey("e")){
             other.gameObject.SendMessage("GuardInteract", this.gameObject);
+            animator.SetBool("Fix", true);
         }
     }
 

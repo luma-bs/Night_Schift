@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class DogController : MonoBehaviour
 {
-
+    private Animator animator;
     private GameObject inventory; //prefab do item que o cachorro esteja levando
     private GameObject inventoryItemInstance; //instancia do item do inventário
 
@@ -79,6 +79,7 @@ public class DogController : MonoBehaviour
             StopMovement();
             pointsOfInterest.Remove(nextTarget);
             nextTarget.SendMessage("DogInteract", this.gameObject);
+            animator.SetBool("Messing", true);
         }
     }
 
@@ -92,6 +93,7 @@ public class DogController : MonoBehaviour
         navMeshAgent.enabled = true;
         nextTarget = NewRandomTarget();
         navMeshAgent.SetDestination(nextTarget.transform.position);
+        animator.SetBool("Messing", false);
     }
 
     public void GoToTarget(GameObject newDestination)

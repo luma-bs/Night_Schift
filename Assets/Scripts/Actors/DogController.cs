@@ -7,7 +7,7 @@ public class DogController : MonoBehaviour
 {
 
     private GameObject inventory; //prefab do item que o cachorro esteja levando
-    private GameObject inventoryItemInstance; //instancia do item do invent√°rio
+    private GameObject inventoryItemInstance; //instancia do item do invent·rio
 
     public List<GameObject> pointsOfInterest; // Array of GameObjects to be the destinations for navMeshAgent
 
@@ -34,7 +34,7 @@ public class DogController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         pointsOfInterest = new List<GameObject>();
-        pointsOfInterest.AddRange( GameObject.FindGameObjectsWithTag("MuseumPiece") );
+        pointsOfInterest.AddRange(GameObject.FindGameObjectsWithTag("MuseumPiece"));
 
         navMeshAgent.speed = speed;
         navMeshAgent.acceleration = 5f;
@@ -45,15 +45,20 @@ public class DogController : MonoBehaviour
 
     private GameObject NewRandomTarget()
     {
-        if(nextTargetSet != null){
+        if (nextTargetSet != null)
+        {
             GameObject temp = nextTargetSet;
             nextTargetSet = null;
             return temp;
         }
-        else{
-            if(pointsOfInterest.Count >= 1){
-                return pointsOfInterest[Random.Range(0,pointsOfInterest.Count-1)];
-            } else {
+        else
+        {
+            if (pointsOfInterest.Count >= 1)
+            {
+                return pointsOfInterest[Random.Range(0, pointsOfInterest.Count - 1)];
+            }
+            else
+            {
                 GameObject originalPositionObj = new GameObject("DogOriginalPosition");
                 originalPositionObj.transform.position = originalPosition;
                 return originalPositionObj;
@@ -61,13 +66,15 @@ public class DogController : MonoBehaviour
         }
     }
 
-    public void SetNextTarget(GameObject newNextTarget){
+    public void SetNextTarget(GameObject newNextTarget)
+    {
         nextTargetSet = newNextTarget;
     }
 
     private void OnTriggerEnter(Collider otherCollider)
     {
-        if(otherCollider.gameObject == nextTarget){
+        if (otherCollider.gameObject == nextTarget)
+        {
             Debug.Log("ENTROU, PARE");
             StopMovement();
             pointsOfInterest.Remove(nextTarget);
@@ -75,43 +82,50 @@ public class DogController : MonoBehaviour
         }
     }
 
-    public void StopMovement(){
+    public void StopMovement()
+    {
         navMeshAgent.enabled = false;
     }
 
-    public void GoToRandomTarget(){
+    public void GoToRandomTarget()
+    {
         navMeshAgent.enabled = true;
         nextTarget = NewRandomTarget();
         navMeshAgent.SetDestination(nextTarget.transform.position);
     }
 
-    public void GoToTarget(GameObject newDestination){
+    public void GoToTarget(GameObject newDestination)
+    {
         SetNextTarget(newDestination);
         GoToRandomTarget(); //gambiarra, mas funciona
     }
 
-    public void AddToInventory(GameObject newItem){
+    public void AddToInventory(GameObject newItem)
+    {
         inventory = newItem;
         RenderInventory();
     }
 
-    public void CleanInventory(){
+    public void CleanInventory()
+    {
         inventory = null;
         DestroyInventoryRender();
     }
 
-    public GameObject GetInventory(){
+    public GameObject GetInventory()
+    {
         return inventory;
     }
 
-    private void RenderInventory(){
+    private void RenderInventory()
+    {
         inventoryItemInstance = Instantiate(inventory, this.gameObject.transform);
     }
 
-    private void DestroyInventoryRender(){
+    private void DestroyInventoryRender()
+    {
         Destroy(inventoryItemInstance);
         inventoryItemInstance = null;
     }
 
 }
-

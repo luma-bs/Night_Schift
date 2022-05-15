@@ -40,7 +40,6 @@ public class DogController : MonoBehaviour
         navMeshAgent.acceleration = 5f;
 
         nextTarget = NewRandomTarget();
-        Debug.Log(nextTarget.name);
         navMeshAgent.destination = nextTarget.transform.position;
     }
 
@@ -78,8 +77,15 @@ public class DogController : MonoBehaviour
         {
             pointsOfInterest.Remove(nextTarget);
             nextTarget.SendMessage("MessUp");
-            GoToRandomTarget();
+            if(nextTarget.tag == "DogDistraction"){
+                StartCoroutine("EatDogFood");
+            } else GoToRandomTarget();
         }
+    }
+
+    public IEnumerator EatDogFood(){
+        yield return new WaitForSeconds(2);
+        GoToRandomTarget();
     }
 
     public void StopMovement()
@@ -91,7 +97,6 @@ public class DogController : MonoBehaviour
     {
         navMeshAgent.enabled = true;
         nextTarget = NewRandomTarget();
-        Debug.Log(nextTarget.name);
         navMeshAgent.SetDestination(nextTarget.transform.position);
     }
 

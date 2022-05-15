@@ -14,11 +14,11 @@ public class PlayerFixObjects : MonoBehaviour
 
     private string fixableObjectsTag = "MuseumPiece";
     private string takeableObjectsTag = "TakeableObj"; 
-    private string dogDistractionTag = "DogDistractionTag";
+    private string dogDistractionTag = "DogDistraction";
     
     private string fixText = "Pressione E para arrumar";
-    private string takeText = "Pressione E para pegar";
-    private string missingText = "Alguma coisa está faltando...";
+    private string dogfoodText = "Pressione E para encher de ração";
+    private string fullBowlText = "Encheu!";
 
     // Start is called before the first frame update
     void Start()
@@ -35,17 +35,30 @@ public class PlayerFixObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<ObjectAnimationController>().isMessed){
-            ShowFixText();
+        if(other.gameObject.tag == fixableObjectsTag){
+            if(other.gameObject.GetComponent<ObjectAnimationController>().isMessed){
+                ShowFixText();
+            } 
+        } else if(other.gameObject.tag == dogDistractionTag){
+            Debug.Log("ENTER DOG DISTRACTION");
+            if(other.gameObject.GetComponent<DogBowl>().isEmpty){
+                ShowDogFoodText();
+            }
         }
     }
 
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("FICOU TRIGGER");
-        if (other.gameObject.GetComponent<ObjectAnimationController>().isMessed && Input.GetKey("e")){
-            other.gameObject.SendMessage("Fix");
+        if(other.gameObject.tag == fixableObjectsTag){
+            if (other.gameObject.GetComponent<ObjectAnimationController>().isMessed && Input.GetKey("e")){
+                other.gameObject.SendMessage("Fix");
+            }
+        } else if(other.gameObject.tag == dogDistractionTag){
+            if(other.gameObject.GetComponent<DogBowl>().isEmpty && Input.GetKey("e")){
+                other.gameObject.SendMessage("FillUp");
+                ShowFullBowlText();
+            }
         }
     }
 
@@ -54,12 +67,12 @@ public class PlayerFixObjects : MonoBehaviour
         
     }
 
-    public void ShowTakeText(){
-        ShowText(takeText);
+    public void ShowDogFoodText(){
+        ShowText(dogfoodText);
     }
 
-    public void ShowMissingText(){
-        ShowText(missingText);
+    public void ShowFullBowlText(){
+        ShowText(fullBowlText);
     }
 
     public void ShowCustomText(string txt){

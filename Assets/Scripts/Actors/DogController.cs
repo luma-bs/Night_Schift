@@ -7,7 +7,7 @@ public class DogController : MonoBehaviour
 {
     private Animator animator;
     private GameObject inventory; //prefab do item que o cachorro esteja levando
-    private GameObject inventoryItemInstance; //instancia do item do inventário
+    private GameObject inventoryItemInstance; //instancia do item do inventï¿½rio
 
     public List<GameObject> pointsOfInterest; // Array of GameObjects to be the destinations for navMeshAgent
 
@@ -30,7 +30,7 @@ public class DogController : MonoBehaviour
     private void Start()
     {
         originalPosition = gameObject.transform.position;
-        timerScript = GameObject.Find("Timer").GetComponent<Timer>();
+        //timerScript = GameObject.Find("Timer").GetComponent<Timer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         pointsOfInterest = new List<GameObject>();
@@ -76,10 +76,11 @@ public class DogController : MonoBehaviour
         if (otherCollider.gameObject == nextTarget)
         {
             Debug.Log("ENTROU, PARE");
-            StopMovement();
+            //StopMovement();
             pointsOfInterest.Remove(nextTarget);
-            nextTarget.SendMessage("DogInteract", this.gameObject);
-            animator.SetBool("Messing", true);
+            nextTarget.SendMessage("MessUp");
+            GoToRandomTarget();
+            //animator.SetBool("Messing", true);
         }
     }
 

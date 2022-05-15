@@ -7,8 +7,8 @@ public class PlayerFixObjects : MonoBehaviour
 {
 
     public Text pressButtonText;
-    public GameObject inventory;
-    public GameObject inventoryItemInstance;
+    //public GameObject inventory;
+    //public GameObject inventoryItemInstance;
 
     private Animator animator;
 
@@ -35,15 +35,17 @@ public class PlayerFixObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SendMessage("GuardApproach", this.gameObject);
+        if(other.gameObject.GetComponent<ObjectAnimationController>().isMessed){
+            ShowFixText();
+        }
     }
 
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKey("e")){
-            other.gameObject.SendMessage("GuardInteract", this.gameObject);
-            animator.SetBool("Fix", true);
+        Debug.Log("FICOU TRIGGER");
+        if (other.gameObject.GetComponent<ObjectAnimationController>().isMessed && Input.GetKey("e")){
+            other.gameObject.SendMessage("Fix");
         }
     }
 
@@ -76,7 +78,7 @@ public class PlayerFixObjects : MonoBehaviour
         pressButtonText.enabled = false;
     }
 
-    public void AddToInventory(GameObject newItem){
+    /*public void AddToInventory(GameObject newItem){
         inventory = newItem;
         RenderInventory();
     }
@@ -97,6 +99,6 @@ public class PlayerFixObjects : MonoBehaviour
     private void DestroyInventoryRender(){
         Destroy(inventoryItemInstance);
         inventoryItemInstance = null;
-    }
+    }*/
 
 }

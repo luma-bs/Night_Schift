@@ -40,6 +40,7 @@ public class DogController : MonoBehaviour
         navMeshAgent.acceleration = 5f;
 
         nextTarget = NewRandomTarget();
+        Debug.Log(nextTarget.name);
         navMeshAgent.destination = nextTarget.transform.position;
     }
 
@@ -75,12 +76,9 @@ public class DogController : MonoBehaviour
     {
         if (otherCollider.gameObject == nextTarget)
         {
-            Debug.Log("ENTROU, PARE");
-            //StopMovement();
             pointsOfInterest.Remove(nextTarget);
             nextTarget.SendMessage("MessUp");
             GoToRandomTarget();
-            //animator.SetBool("Messing", true);
         }
     }
 
@@ -93,8 +91,8 @@ public class DogController : MonoBehaviour
     {
         navMeshAgent.enabled = true;
         nextTarget = NewRandomTarget();
+        Debug.Log(nextTarget.name);
         navMeshAgent.SetDestination(nextTarget.transform.position);
-        animator.SetBool("Messing", false);
     }
 
     public void GoToTarget(GameObject newDestination)
@@ -103,7 +101,7 @@ public class DogController : MonoBehaviour
         GoToRandomTarget(); //gambiarra, mas funciona
     }
 
-    public void AddToInventory(GameObject newItem)
+    /*ublic void AddToInventory(GameObject newItem)
     {
         inventory = newItem;
         RenderInventory();
@@ -129,6 +127,6 @@ public class DogController : MonoBehaviour
     {
         Destroy(inventoryItemInstance);
         inventoryItemInstance = null;
-    }
+    }*/
 
 }

@@ -8,7 +8,8 @@ public class Timer : MonoBehaviour
 {
     public float timeRemaining = 30;
     public Text timerText;
-    public Text timesupText;
+    public Text scoreText;
+    public GameObject scorePanel;
 
     public bool timesUp;
 
@@ -46,15 +47,42 @@ public class Timer : MonoBehaviour
     		time = 0;
 
             timesUp = true;
-            timesupText.enabled = true;
 
-            Wait();
-            //Time.timeScale = 0f; //efetivamente pausa o jogo
+            Time.timeScale = 0f; //efetivamente pausa o jogo
+            DisplayScorePanel();
         }
 
     	float minutes = Mathf.FloorToInt(time / 60);
     	float seconds = Mathf.FloorToInt(time % 60);
 
     	timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void DisplayScorePanel(){
+        List<GameObject> pointsOfInterest;
+        pointsOfInterest = new List<GameObject>();
+        pointsOfInterest.AddRange(GameObject.FindGameObjectsWithTag("MuseumPiece"));
+
+        float numFixed = pointsOfInterest.Count;
+        foreach(GameObject obj in pointsOfInterest){
+            if(obj.GetComponent<ObjectAnimationController>().isMessed){
+                numFixed--;
+            }
+        }
+        Debug.Log(numFixed);
+        Debug.Log(pointsOfInterest.Count);
+        float score = 100f*(numFixed/pointsOfInterest.Count);
+        
+        scoreText.text = (int)score+"% arrumado";
+        scorePanel.SetActive(true);
+
+    }
+
+    public void Sair(){
+        Application.Quit();
+    }
+
+    public void ProximaFase(){
+        SceneManager.LoadScene("Level2");
     }
 }

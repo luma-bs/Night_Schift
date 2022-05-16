@@ -77,14 +77,15 @@ public class DogController : MonoBehaviour
         {
             pointsOfInterest.Remove(nextTarget);
             nextTarget.SendMessage("MessUp");
-            if(nextTarget.tag == "DogDistraction"){
-                StartCoroutine("EatDogFood");
-            } else GoToRandomTarget();
+            StartCoroutine("DogInteraction");
         }
     }
 
-    public IEnumerator EatDogFood(){
-        yield return new WaitForSeconds(2);
+    public IEnumerator DogInteraction(){
+        Animator anim = gameObject.GetComponent<Animator>();
+        anim.SetTrigger("isMessing");
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        anim.ResetTrigger("isMessing");
         GoToRandomTarget();
     }
 

@@ -40,7 +40,6 @@ public class PlayerFixObjects : MonoBehaviour
                 ShowFixText();
             } 
         } else if(other.gameObject.tag == dogDistractionTag){
-            Debug.Log("ENTER DOG DISTRACTION");
             if(other.gameObject.GetComponent<DogBowl>().isEmpty){
                 ShowDogFoodText();
             }

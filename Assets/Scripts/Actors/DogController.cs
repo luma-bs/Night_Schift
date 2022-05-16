@@ -40,6 +40,7 @@ public class DogController : MonoBehaviour
         navMeshAgent.acceleration = 5f;
 
         nextTarget = NewRandomTarget();
+        Debug.Log(nextTarget.name);
         navMeshAgent.destination = nextTarget.transform.position;
     }
 
@@ -53,6 +54,7 @@ public class DogController : MonoBehaviour
         }
         else
         {
+            pointsOfInterest = BuildTargetsList();
             if (pointsOfInterest.Count >= 1)
             {
                 return pointsOfInterest[Random.Range(0, pointsOfInterest.Count - 1)];
@@ -66,6 +68,17 @@ public class DogController : MonoBehaviour
         }
     }
 
+    List<GameObject> BuildTargetsList(){
+        List<GameObject> list = new List<GameObject>();
+        List<GameObject> goodList = new List<GameObject>();
+        list.AddRange(GameObject.FindGameObjectsWithTag("MuseumPiece"));
+        foreach(GameObject obj in list){
+            if(!obj.GetComponent<ObjectAnimationController>().isMessed)
+                goodList.Add(obj);
+        }
+        return goodList;
+    }
+
     public void SetNextTarget(GameObject newNextTarget)
     {
         nextTargetSet = newNextTarget;
@@ -75,7 +88,7 @@ public class DogController : MonoBehaviour
     {
         if (otherCollider.gameObject == nextTarget)
         {
-            pointsOfInterest.Remove(nextTarget);
+            //pointsOfInterest.Remove(nextTarget);
             nextTarget.SendMessage("MessUp");
             StartCoroutine("DogInteraction");
         }
@@ -87,6 +100,7 @@ public class DogController : MonoBehaviour
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         anim.ResetTrigger("isMessing");
         GoToRandomTarget();
+        Debug.Log(nextTarget.name);
     }
 
     public void StopMovement()

@@ -18,8 +18,8 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        myLoadedAssetBundle = AssetBundle.LoadFromFile("Assets/AssetBundles/scenes");
-        scenePaths = myLoadedAssetBundle.GetAllScenePaths();
+        //myLoadedAssetBundle = AssetBundle.LoadFromFile("Assets/AssetBundles/scenes");
+        //scenePaths = myLoadedAssetBundle.GetAllScenePaths();
     }
 
     void Update()
@@ -36,11 +36,11 @@ public class Timer : MonoBehaviour
         DisplayTime(timeRemaining);
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(scenePaths[0], LoadSceneMode.Single);
-    }
+    //IEnumerator Wait()
+    //{
+        //yield return new WaitForSeconds(5);
+        //SceneManager.LoadScene(scenePaths[0], LoadSceneMode.Single);
+    //}
 
     void DisplayTime (float time){
     	if (time < 0){
@@ -83,6 +83,12 @@ public class Timer : MonoBehaviour
     }
 
     public void ProximaFase(){
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level2");
+    }
+
+    public void TerminarJogo(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("TheEnd");
     }
 }

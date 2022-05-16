@@ -29,6 +29,7 @@ public class DogBowl : MonoBehaviour
             dogBowlFull.SetActive(true);
             dogBowlEmpty.SetActive(false);
             isEmpty = false;
+            dogController = GameObject.Find("Dog").GetComponent<DogController>();
             dogController.SetNextTarget(this.gameObject);
         }
     }
